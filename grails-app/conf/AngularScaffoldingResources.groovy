@@ -1,6 +1,6 @@
 import grails.util.GrailsUtil
 
-def fileVersion = GrailsUtil.isDevelopmentEnv() ? '1.0.6' : '1.0.6.min'
+def fileVersion = GrailsUtil.isDevelopmentEnv() ? '1.2.23' : '1.2.23.min'
 
 modules = {
     angular {
@@ -11,9 +11,14 @@ modules = {
 		dependsOn 'angular'
         resource id: 'js', url: [plugin: 'angular-scaffolding', dir: 'js/angular', file: "angular-resource-${fileVersion}.js"], nominify: true
     }
-
+	
+    'angular-route' {
+		dependsOn 'angular'
+        resource id: 'js', url: [plugin: 'angular-scaffolding', dir: 'js/angular', file: "angular-route-${fileVersion}.js"], nominify: true
+    }
+	
     'angular-scaffolding' {
-        dependsOn 'jquery', 'angular-resource'
+        dependsOn 'jquery', 'angular-resource', 'angular-route'
         resource id: 'js', url: [plugin: 'angular-scaffolding', dir: 'js', file: 'scaffolding.js']
         resource id: 'css', url: [plugin: 'angular-scaffolding', dir: 'css', file: 'scaffolding.css']
     }
