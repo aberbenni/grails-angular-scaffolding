@@ -8,9 +8,16 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
         <link rel="stylesheet" href="\${resource(dir: 'css', file: 'main.css')}" type="text/css">
         <link rel="stylesheet" href="\${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
-
         <r:require module="angular-scaffolding"/>
-		<r:require module="angular-grails-default"/>
+        <r:require module="angular-grails-default"/>
+		<script>
+			angular.module('grailsService', ['ngResource'])
+				.constant("baseUrl", "\${createLink(uri: '/${domainClass.propertyName}/')}");
+			
+			angular.module('scaffolding', ['grailsService', 'flashService', 'ngRoute'])
+				.constant("templateUrl", "\${createLink(uri: '/ng-templates/'+controllerName')}")
+				.constant("commonTemplateUrl", "\${createLink(uri: '/ng-templates')}");
+		</script>
     </head>
     <body data-ng-app="scaffolding" data-base-url="\${createLink(uri: '/${domainClass.propertyName}/')}">
         <a href="#list-${domainClass.propertyName}" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
