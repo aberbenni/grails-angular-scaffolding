@@ -4,7 +4,7 @@ def fileVersion = GrailsUtil.isDevelopmentEnv() ? '1.2.23' : '1.2.23.min'
 
 modules = {
     angular {
-        resource id: 'js', url: [plugin: 'angular-scaffolding', dir: 'js/angular', file: "angular-${fileVersion}.js"], nominify: true
+        resource id: 'js', url: [plugin: 'angular-scaffolding', dir: 'js/angular', file: "angular-${fileVersion}.js"], nominify: true, disposition: 'head'
     }
 
     'angular-resource' {
