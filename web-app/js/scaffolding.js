@@ -27,20 +27,20 @@ angular.module('flashService', []).factory('Flash', function() {
 /**
  * The main scaffolding module.
  */
-var scaffoldingModule = angular.module('scaffolding', ['grailsService', 'flashService', 'ngRoute']);
+var scaffoldingModule = angular.module('scaffolding');
 
 /**
  * Route definitions connecting URL fragments to views and controllers.
  */
 scaffoldingModule.config([
-    '$routeProvider',
-    function($routeProvider) {
-        var baseUrl = $('body').data('template-url');
+    '$routeProvider', 'templateUrl',
+    function($routeProvider, templateUrl) {
+		//var baseUrl = templateUrl //$('body').data('template-url');
         $routeProvider.
-            when('/create', {templateUrl: baseUrl + '/create.html', controller: CreateCtrl}).
-            when('/edit/:id', {templateUrl: baseUrl + '/edit.html', controller: EditCtrl}).
-            when('/list', {templateUrl: baseUrl + '/list.html', controller: ListCtrl}).
-            when('/show/:id', {templateUrl: baseUrl + '/show.html', controller: ShowCtrl}).
+            when('/create', { templateUrl: templateUrl + '/create.html', controller: "CreateCtrl"}).
+            when('/edit/:id', { templateUrl: templateUrl + '/edit.html', controller: "EditCtrl"}).
+            when('/list', { templateUrl: templateUrl + '/list.html', controller: "ListCtrl"}).
+            when('/show/:id', { templateUrl: templateUrl + '/show.html', controller: "ShowCtrl"}).
             otherwise({redirectTo: '/list'});
     }
 ]);
@@ -48,8 +48,8 @@ scaffoldingModule.config([
 /**
  * A directive for including an alert message in the page.
  */
-scaffoldingModule.directive('alert', function() {
-	var baseUrl = $('body').data('common-template-url');
+scaffoldingModule.directive('alert', function(commonTemplateUrl) {
+	var baseUrl = commonTemplateUrl;
 	return {
         restrict: 'E', // can only be used as an element
         transclude: false, // the element should not contain any content so there's no need to transclude
@@ -65,8 +65,8 @@ scaffoldingModule.directive('alert', function() {
 /**
  * A directive for including a standard pagination block in the page.
  */
-scaffoldingModule.directive('pagination', function() {
-	var baseUrl = $('body').data('common-template-url');
+scaffoldingModule.directive('pagination', function(commonTemplateUrl) {
+	var baseUrl = commonTemplateUrl;
 	return {
         restrict: 'A', // can only be used as an attribute
         transclude: false, // the element should not contain any content so there's no need to transclude
@@ -113,8 +113,8 @@ scaffoldingModule.directive('pagination', function() {
 /**
  * A directive for making a table header sortable.
  */
-scaffoldingModule.directive('sortable', function() {
-	var baseUrl = $('body').data('common-template-url');
+scaffoldingModule.directive('sortable', function(commonTemplateUrl) {
+	var baseUrl = commonTemplateUrl;
 	return {
 		restrict: 'A',
 		transclude: true,
@@ -188,7 +188,23 @@ function errorHandler($scope, $location, Flash, response) {
     }
 }
 
-function ListCtrl($scope, $routeParams, $location, Grails, Flash) {
+scaffoldingModule.controller("ListCtrl", function($scope, $routeParams, $location, Grails, Flash) {
+	console.log("ListCtrl");
+    Grails.list($routeParams, function(list, headers) {
+		console.log(list);
+		console.log($scope.list);
+        $scope.list = list;
+		console.log($scope.list);
+        $scope.total = parseInt(headers('X-Pagination-Total'));
+        $scope.message = Flash.getMessage();
+    }, errorHandler.curry($scope, $location, Flash));
+
+	$scope.show = function(item) {
+		$location.path('/show/' + item.id);
+	};
+});
+
+/*function ListCtrl($scope, $routeParams, $location, Grails, Flash) {	
     Grails.list($routeParams, function(list, headers) {
         $scope.list = list;
         $scope.total = parseInt(headers('X-Pagination-Total'));
@@ -198,9 +214,9 @@ function ListCtrl($scope, $routeParams, $location, Grails, Flash) {
 	$scope.show = function(item) {
 		$location.path('/show/' + item.id);
 	};
-}
+}*/
 
-function ShowCtrl($scope, $routeParams, $location, Grails, Flash) {
+scaffoldingModule.controller("ShowCtrl", function($scope, $routeParams, $location, Grails, Flash) {
     $scope.message = Flash.getMessage();
 
     Grails.get({id: $routeParams.id}, function(item) {
@@ -213,9 +229,24 @@ function ShowCtrl($scope, $routeParams, $location, Grails, Flash) {
             $location.path('/list');
         }, errorHandler.curry($scope, $location, Flash));
     };
-}
+});
 
-function CreateCtrl($scope, $location, Grails, Flash) {
+/*function ShowCtrl($scope, $routeParams, $location, Grails, Flash) {
+    $scope.message = Flash.getMessage();
+
+    Grails.get({id: $routeParams.id}, function(item) {
+        $scope.item = item;
+    }, errorHandler.curry($scope, $location, Flash));
+
+    $scope.delete = function(item) {
+        item.$delete(function(response) {
+            Flash.success(response.message);
+            $location.path('/list');
+        }, errorHandler.curry($scope, $location, Flash));
+    };
+}*/
+
+scaffoldingModule.controller("CreateCtrl", function($scope, $location, Grails, Flash) {
     $scope.item = new Grails;
 
     $scope.save = function(item) {
@@ -224,9 +255,21 @@ function CreateCtrl($scope, $location, Grails, Flash) {
             $location.path('/show/' + response.id);
         }, errorHandler.curry($scope, $location, Flash));
     };
-}
+});
 
-function EditCtrl($scope, $routeParams, $location, Grails, Flash) {
+/*function CreateCtrl($scope, $location, Grails, Flash) {
+    $scope.item = new Grails;
+
+    $scope.save = function(item) {
+        item.$save(function(response) {
+            Flash.success(response.message);
+            $location.path('/show/' + response.id);
+        }, errorHandler.curry($scope, $location, Flash));
+    };
+}*/
+
+
+scaffoldingModule.controller("EditCtrl", function($scope, $routeParams, $location, Grails, Flash) {
     Grails.get({id: $routeParams.id}, function(item) {
         $scope.item = item;
     }, errorHandler.curry($scope, $location, Flash));
@@ -244,4 +287,24 @@ function EditCtrl($scope, $routeParams, $location, Grails, Flash) {
             $location.path('/list');
         }, errorHandler.curry($scope, $location, Flash));
     };
-}
+});
+
+/*function EditCtrl($scope, $routeParams, $location, Grails, Flash) {
+    Grails.get({id: $routeParams.id}, function(item) {
+        $scope.item = item;
+    }, errorHandler.curry($scope, $location, Flash));
+
+    $scope.update = function(item) {
+        item.$update(function(response) {
+            Flash.success(response.message);
+            $location.path('/show/' + response.id);
+        }, errorHandler.curry($scope, $location, Flash));
+    };
+
+    $scope.delete = function(item) {
+        item.$delete(function(response) {
+            Flash.success(response.message);
+            $location.path('/list');
+        }, errorHandler.curry($scope, $location, Flash));
+    };
+}*/
