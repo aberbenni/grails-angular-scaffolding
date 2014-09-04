@@ -11,8 +11,8 @@
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		<g:layoutHead/>
         <r:layoutResources />
+		<g:layoutHead/>
 	</head>
 	<body data-ng-app="${pageProperty(name: 'body.data-ng-app')}"
 		  data-base-url="${pageProperty(name: 'body.data-base-url', default: createLink(action: 'index').replaceAll(/index$/, ''))}"
