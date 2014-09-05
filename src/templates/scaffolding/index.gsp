@@ -15,7 +15,7 @@
 				.constant("baseUrl", "\${createLink(uri: '/${domainClass.propertyName}/')}");
 			
 			angular.module('scaffolding', ['grailsService', 'flashService', 'ngRoute'])
-				.constant("templateUrl", "\${createLink(uri: '/ng-templates/'+controllerName')}")
+				.constant("templateUrl", "\${createLink(uri: '/ng-templates/'+controllerName)}")
 				.constant("commonTemplateUrl", "\${createLink(uri: '/ng-templates')}");
 		</script>
     </head>
