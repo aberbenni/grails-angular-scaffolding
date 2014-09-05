@@ -47,7 +47,7 @@ scaffoldingModule.config([
 /**
  * A directive for including an alert message in the page.
  */
-scaffoldingModule.directive('alert', function(commonTemplateUrl) {
+scaffoldingModule.directive('gasAlert', function(commonTemplateUrl) {
 	return {
         restrict: 'E', // can only be used as an element
         transclude: false, // the element should not contain any content so there's no need to transclude
@@ -63,7 +63,7 @@ scaffoldingModule.directive('alert', function(commonTemplateUrl) {
 /**
  * A directive for including a standard pagination block in the page.
  */
-scaffoldingModule.directive('pagination', function(commonTemplateUrl) {
+scaffoldingModule.directive('gasPagination', function(commonTemplateUrl) {
 	return {
         restrict: 'A', // can only be used as an attribute
         transclude: false, // the element should not contain any content so there's no need to transclude
@@ -110,12 +110,13 @@ scaffoldingModule.directive('pagination', function(commonTemplateUrl) {
 /**
  * A directive for making a table header sortable.
  */
-scaffoldingModule.directive('sortable', function(commonTemplateUrl) {
+scaffoldingModule.directive('gasSortable', function(commonTemplateUrl) {
 	return {
 		restrict: 'A',
 		transclude: true,
 		scope: {
-			property: '@sortable'
+			//property: '@sortable'
+			property: '@gasSortable'
 		},
 		controller: function($scope, $routeParams, $location) {
 			$scope.isSortedBy = function() {

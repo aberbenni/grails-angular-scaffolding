@@ -2,7 +2,7 @@
 <div class="page-header">
     <h1>${className} List</h1>
 </div>
-<alert level="{{message.level}}" text="{{message.text}}"></alert>
+<gas-alert level="{{message.level}}" text="{{message.text}}"></alert>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -15,7 +15,7 @@
                 if (p.isAssociation()) { %>
             <th>${p.naturalName}</th>
             <%  } else { %>
-            <th data-sortable="${p.name}">${p.naturalName}</th>
+            <th data-gas-sortable="${p.name}">${p.naturalName}</th>
             <%  } } %>
         </tr>
     </thead>
@@ -27,4 +27,4 @@
         </tr>
     </tbody>
 </table>
-<div class="pagination pagination-centered" data-pagination data-total="total"></div>
+<div class="pagination pagination-centered" data-gas-pagination data-total="total"></div>
