@@ -46,7 +46,8 @@ class AngularTemplateGenerator extends DefaultGrailsTemplateGenerator
 		Assert.hasText destdir, 'Argument [destdir] not specified'
 
 		for (t in getTemplateNames()) {
-			event 'StatusUpdate', ["Generating $t for domain class ${domainClass.fullName}"]
+			if(event)
+				event 'StatusUpdate', ["Generating $t for domain class ${domainClass.fullName}"]
 			generateView domainClass, t, new File(destdir).absolutePath
 		}
 	}
