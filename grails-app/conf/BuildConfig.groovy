@@ -23,5 +23,6 @@ grails.project.dependency.resolution = {
             export = false
         }
         compile ':scaffolding:2.0.0'
+		compile ":fields:1.3"
     }
 }
