@@ -24,5 +24,6 @@ grails.project.dependency.resolution = {
         }
         compile ':scaffolding:2.0.3'
 		compile ":fields:1.3"
+		compile ":gsp-arse:1.3"
     }
 }
