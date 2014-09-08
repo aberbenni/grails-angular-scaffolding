@@ -89,9 +89,6 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 		GrailsTemplateGenerator generator = ctx.scaffoldingTemplateGenerator
 		ClassLoader parentLoader = ctx.classLoader
 		
-		Map scaffoldedDomains = ctx.controllerToScaffoldedDomainClassMap
-		scaffoldedDomains[controllerClass.logicalPropertyName] = domainClass
-		
 		def basedir = BuildSettingsHolder.settings.baseDir.toString()
 		generator.generateViews(domainClass, basedir)     
 	}
