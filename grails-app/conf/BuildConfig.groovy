@@ -23,7 +23,19 @@ grails.project.dependency.resolution = {
             export = false
         }
         compile ':scaffolding:2.0.3'
-		compile ":fields:1.3"
+		
+		compile ":fields:1.4"
+		
 		compile ":gsp-arse:1.3"
+		
+        compile(":platform-ui:1.0.RC7"){
+            excludes "resources"
+        }
+		
+        compile(':platform-core:1.0.0') {
+            excludes "spring-test"
+        }
+		
+        runtime ":resources:1.2.8"
     }
 }
