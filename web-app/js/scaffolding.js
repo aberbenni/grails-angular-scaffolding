@@ -36,7 +36,7 @@ scaffoldingModule.config([
     '$routeProvider', 'templateUrl',
     function($routeProvider, templateUrl) {
         $routeProvider.
-            when('/create', { templateUrl: templateUrl + '/create.html', controller: "CreateCtrl" }).
+            when('/create', { templateUrl: templateUrl + '/create.gsp', controller: "CreateCtrl" }).
             when('/edit/:id', { templateUrl: templateUrl + '/edit.html', controller: "EditCtrl" }).
             when('/list', { templateUrl: templateUrl + '/list.html', controller: "ListCtrl" }).
             when('/show/:id', { templateUrl: templateUrl + '/show.html', controller: "ShowCtrl" }).

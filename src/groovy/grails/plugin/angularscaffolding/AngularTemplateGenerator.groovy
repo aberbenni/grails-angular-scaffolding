@@ -80,7 +80,7 @@ println "viewName: $viewName, domainClass: $domainClass, class: ${domainClass.cl
 	@Override
 	void generateView(GrailsDomainClass domainClass, String viewName, String destDir) {
 		def suffix = viewName.find(/\.\w+$/)
-
+		//TODO move to web-app folder list.gsp create.gsp edit.gsp show.gsp
 		def viewsDir = suffix == '.html' ? new File("$destDir/web-app/ng-templates/$domainClass.propertyName") : new File("$destDir/grails-app/views/$domainClass.propertyName")
 		if (!viewsDir.exists()) viewsDir.mkdirs()
 
