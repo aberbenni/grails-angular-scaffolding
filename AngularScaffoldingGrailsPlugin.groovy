@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
 import grails.util.BuildSettingsHolder
 
+import grails.plugin.angularscaffolding.marshalling.AngularObjectMarshallers
+import grails.plugin.angularscaffolding.marshalling.AngularDateMarshaller
+
 class AngularScaffoldingGrailsPlugin {
 
 	private Logger log = LoggerFactory.getLogger(getClass())
@@ -33,13 +36,30 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 	def observe = ['controllers', 'domainClass']
 	def loadAfter = ['controllers', 'groovyPages','scaffolding']
 	
+	def doWithConfig = { config ->
+		
+		application {
+			grails.databinding.dateFormats = config.grails.databinding.dateFormats + ["yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss.S", "yyyy-MM-dd'T'hh:mm:ss'Z'", "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"]
+		}
+		
+	}
+	
 	def doWithSpring = {
 		scaffoldingTemplateGenerator(AngularTemplateGenerator, ref("classLoader")) {
 			grailsApplication = ref("grailsApplication")
 		}
+		
+		angularObjectMarshallers( AngularObjectMarshallers ) {
+	        marshallers = [
+	                new AngularDateMarshaller()
+	        ]
+	    }
 	}
 	
 	def doWithApplicationContext = { ctx ->
+		// Custom marshalling
+		ctx.getBean( "angularObjectMarshallers" ).register()
+		
 		if (application.warDeployed) {
 			doScaffolding ctx, application
 			return
