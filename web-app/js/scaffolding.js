@@ -37,9 +37,9 @@ scaffoldingModule.config([
     function($routeProvider, templateUrl) {
         $routeProvider.
             when('/create', { templateUrl: templateUrl + '/create.gsp', controller: "CreateCtrl" }).
-            when('/edit/:id', { templateUrl: templateUrl + '/edit.html', controller: "EditCtrl" }).
-            when('/list', { templateUrl: templateUrl + '/list.html', controller: "ListCtrl" }).
-            when('/show/:id', { templateUrl: templateUrl + '/show.html', controller: "ShowCtrl" }).
+            when('/edit/:id', { templateUrl: templateUrl + '/edit.gsp', controller: "EditCtrl" }).
+            when('/list', { templateUrl: templateUrl + '/list.gsp', controller: "ListCtrl" }).
+            when('/show/:id', { templateUrl: templateUrl + '/show.gsp', controller: "ShowCtrl" }).
             otherwise({redirectTo: '/list'});
     }
 ]);
