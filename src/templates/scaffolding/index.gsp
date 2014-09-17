@@ -19,7 +19,7 @@
 				.constant("commonTemplateUrl", "\${createLink(uri: '/ng-templates')}");
 		</script>
     </head>
-    <body data-ng-app="scaffolding" data-base-url="\${createLink(uri: '/${domainClass.propertyName}/')}">
+    <body data-ng-app="scaffolding">
         <a href="#list-${domainClass.propertyName}" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
