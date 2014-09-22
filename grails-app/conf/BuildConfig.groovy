@@ -26,7 +26,7 @@ grails.project.dependency.resolution = {
 		
 		compile ":fields:1.4"
 		
-		compile ":gsp-arse:1.3"
+		//compile ":gsp-arse:1.3"
 		
         compile(":platform-ui:1.0.RC7"){
             excludes "resources"
@@ -37,5 +37,8 @@ grails.project.dependency.resolution = {
         }
 		
         runtime ":resources:1.2.8"
+		
+		runtime ":angularjs-resources:1.2.23"
+		
     }
 }
