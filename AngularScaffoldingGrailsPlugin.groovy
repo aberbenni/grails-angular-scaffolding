@@ -34,14 +34,43 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
     def scm = [url: 'https://github.com/robfletcher/grails-angular-scaffolding']
 	
 	def observe = ['controllers', 'domainClass']
-	def loadAfter = ['controllers', 'groovyPages','scaffolding']
 	
 	def doWithConfig = { config ->
 		
-		application {
-			grails.databinding.dateFormats = config.grails.databinding.dateFormats + ["yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss.S", "yyyy-MM-dd'T'hh:mm:ss'Z'", "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"]
-		}
+        platformUi {
+			
+			/*
+            ui.GrailsAngular.actions.cssClass = 'form-actions'
+            ui.GrailsAngular.button.cssClass = 'btn'
+            ui.GrailsAngular.tab.cssClass = 'tab-pane'
+            ui.GrailsAngular.tabs.cssClass = 'nav nav-tabs'
+            ui.GrailsAngular.field.cssClass = 'input'
+            ui.GrailsAngular.input.cssClass = 'input-xlarge'
+            ui.GrailsAngular.invalid.cssClass = 'invalid'
+            ui.GrailsAngular.table.cssClass = 'table table-striped'
+            ui.GrailsAngular.tr.cssClass = ''
+            ui.GrailsAngular.trOdd.cssClass = ''
+            ui.GrailsAngular.trEven.cssClass = ''
+            ui.GrailsAngular.carousel.cssClass = 'carousel slide'
+            ui.GrailsAngular.slide.cssClass = 'item'
+            ui.GrailsAngular.form.cssClass = 'form-horizontal'
+            ui.GrailsAngular.primaryNavigation.cssClass = 'nav'
+            ui.GrailsAngular.secondaryNavigation.cssClass = 'nav nav-pills'
+            ui.GrailsAngular.navigation.cssClass = 'nav'
+        
+		    themes.GrailsAngular.ui.set = "GrailsAngular"*/
+        }
 		
+		application {
+			
+			println "${grails.config.locations}"
+			
+			grails.databinding.dateFormats = config.grails.databinding.dateFormats + ["yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss.S", "yyyy-MM-dd'T'hh:mm:ss'Z'", "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"]
+			
+			//grails.theme.default.theme = 'GrailsAngular'
+			
+		}
+        
 	}
 	
 	def doWithSpring = {
