@@ -30,16 +30,15 @@
         <r:layoutResources />
 	</theme:head>
 	<theme:body bodyAttrs="['data-ng-app']">
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
+		<!-- navbar -->
+		<theme:layoutZone name="primary-navigation"/>
+		
 	    <div class="container">
+			
+			
 	        <div class="content">
 	            <div class="page-header">
 	                <theme:layoutTitle/>
-	            </div>
-	            <div class="row">
-	                <div class="span11">
-	                    <theme:layoutZone name="primary-navigation"/>
-	                </div>
 	            </div>
 				<div class="row">
 	                <div class="span11">
