@@ -3,12 +3,16 @@
 <!doctype html>
 <html>
     <head>
-        <meta name="layout" content="ng-app">
-        <g:set var="entityName" value="\${message(code: '${domainClass.propertyName}.label', default: '${className}')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
-        <link rel="stylesheet" href="\${resource(dir: 'css', file: 'main.css')}" type="text/css">
+        <g:set var="entityName" value="\${message(code: '${domainClass.propertyName}.label', default: '${className}')}" scope="request"/>
+		<theme:title text="\${message(code: '${domainClass.propertyName}.label', default: '${className}')}"/>
+		<theme:layout name="home"/>
+		
+		
+		<link rel="stylesheet" href="\${resource(dir: 'css', file: 'main.css')}" type="text/css">
         <link rel="stylesheet" href="\${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
-        <r:require module="angular-scaffolding"/>
+        
+		<!-- r:require module="ui-bootstrap"/ -->
+		<r:require module="angular-scaffolding"/>
         <r:require module="angular-grails-default"/>
 		<script>
 			angular.module('grailsService', ['ngResource'])
@@ -18,17 +22,23 @@
 				.constant("templateUrl", "\${createLink(uri: '/ng-templates/'+controllerName)}")
 				.constant("commonTemplateUrl", "\${createLink(uri: '/ng-templates')}");
 		</script>
-    </head>
-    <body data-ng-app="scaffolding">
+    </head>	
+    <body id="ng-app" data-ng-app="scaffolding">
         <a href="#list-${domainClass.propertyName}" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+		
         <div class="nav" role="navigation">
             <ul>
                 <li><a class="home" href="\${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><a class="list" href="#list"><g:message code="default.list.label" args="[entityName]" /></a></li>
+                <%/*
+				<li><a class="list" href="#list"><g:message code="default.list.label" args="[entityName]" /></a></li>
                 <li><a class="create" href="#create"><g:message code="default.new.label" args="[entityName]" /></a></li>
+				*/%>
             </ul>
         </div>
-        <div class="content" role="main" data-ng-view>
-        </div>
+		<theme:zone name="body">
+	        <div class="content" role="main" data-ng-view>
+			
+	        </div>
+		</theme:zone>
     </body>
 </html>
