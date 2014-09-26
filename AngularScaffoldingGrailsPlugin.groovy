@@ -19,6 +19,8 @@ class AngularScaffoldingGrailsPlugin {
     def grailsVersion = '2.0 > *'
     def dependsOn = [:]
     def pluginExcludes = []
+	def loadBefore = ['platformUi']
+	def loadAfter = ['controllers', 'groovyPages','scaffolding']
 
     def title = 'Angular Scaffolding Plugin'
     def author = 'Rob Fletcher'
@@ -70,6 +72,7 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 	}
 	
 	def doWithSpring = {
+		
 		scaffoldingTemplateGenerator(AngularTemplateGenerator, ref("classLoader")) {
 			grailsApplication = ref("grailsApplication")
 		}
@@ -79,6 +82,7 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 	                new AngularDateMarshaller()
 	        ]
 	    }
+		
 	}
 	
 	def doWithApplicationContext = { ctx ->
