@@ -1,0 +1,1 @@
+<div class="pagination pagination-centered" data-gas-pagination data-total="total"></div>
