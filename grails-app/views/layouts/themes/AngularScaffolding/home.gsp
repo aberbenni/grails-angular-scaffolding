@@ -37,6 +37,7 @@
 			<div class="content">
 				<!-- ng-view -->
 				<theme:layoutZone name="body"/>
+				<!-- /ng-view -->
 	        </div>
 	    </div>
 		<!-- footer -->

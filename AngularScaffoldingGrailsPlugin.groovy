@@ -41,26 +41,25 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 		
         platformUi {
 			
-			/*
-            ui.GrailsAngular.actions.cssClass = 'form-actions'
-            ui.GrailsAngular.button.cssClass = 'btn'
-            ui.GrailsAngular.tab.cssClass = 'tab-pane'
-            ui.GrailsAngular.tabs.cssClass = 'nav nav-tabs'
-            ui.GrailsAngular.field.cssClass = 'input'
-            ui.GrailsAngular.input.cssClass = 'input-xlarge'
-            ui.GrailsAngular.invalid.cssClass = 'invalid'
-            ui.GrailsAngular.table.cssClass = 'table table-striped'
-            ui.GrailsAngular.tr.cssClass = ''
-            ui.GrailsAngular.trOdd.cssClass = ''
-            ui.GrailsAngular.trEven.cssClass = ''
-            ui.GrailsAngular.carousel.cssClass = 'carousel slide'
-            ui.GrailsAngular.slide.cssClass = 'item'
-            ui.GrailsAngular.form.cssClass = 'form-horizontal'
-            ui.GrailsAngular.primaryNavigation.cssClass = 'nav'
-            ui.GrailsAngular.secondaryNavigation.cssClass = 'nav nav-pills'
-            ui.GrailsAngular.navigation.cssClass = 'nav'
-        
-		    themes.GrailsAngular.ui.set = "GrailsAngular"*/
+            ui.AngularScaffolding.actions.cssClass = 'form-actions'
+            ui.AngularScaffolding.button.cssClass = 'btn'
+            ui.AngularScaffolding.tab.cssClass = 'tab-pane'
+            ui.AngularScaffolding.tabs.cssClass = 'nav nav-tabs'
+            ui.AngularScaffolding.field.cssClass = 'input'
+            ui.AngularScaffolding.input.cssClass = 'input-xlarge'
+            ui.AngularScaffolding.invalid.cssClass = 'invalid'
+            ui.AngularScaffolding.table.cssClass = 'table table-striped'
+            ui.AngularScaffolding.tr.cssClass = ''
+            ui.AngularScaffolding.trOdd.cssClass = ''
+            ui.AngularScaffolding.trEven.cssClass = ''
+            ui.AngularScaffolding.carousel.cssClass = 'carousel slide'
+            ui.AngularScaffolding.slide.cssClass = 'item'
+            ui.AngularScaffolding.form.cssClass = 'form-horizontal'
+            ui.AngularScaffolding.primaryNavigation.cssClass = 'nav'
+            ui.AngularScaffolding.secondaryNavigation.cssClass = 'nav nav-pills'
+            ui.AngularScaffolding.navigation.cssClass = 'nav'
+        	
+		    themes.AngularScaffolding.ui.set = "AngularScaffolding"
         }
 		
 		application {
@@ -138,6 +137,9 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 		}
 		
 		GrailsTemplateGenerator generator = ctx.scaffoldingTemplateGenerator
+		
+		println "generator: $generator"
+		
 		ClassLoader parentLoader = ctx.classLoader
 		
 		def basedir = BuildSettingsHolder.settings.baseDir.toString()
