@@ -32,26 +32,19 @@
 	<theme:body bodyAttrs="['data-ng-app']">
 		<!-- navbar -->
 		<theme:layoutZone name="primary-navigation"/>
-		
+		<!-- content -->
 	    <div class="container">
-			
-			
-	        <div class="content">
-	            <div class="page-header">
-	                <theme:layoutTitle/>
-	            </div>
-				<div class="row">
-	                <div class="span11">
-	                    <theme:layoutZone name="body"/>
-	                </div>
-	            </div>
-				<div class="row">
-	                <div class="span11">
-	                    <div class="footer" role="contentinfo"></div>
-	                </div>
-	            </div>
+			<div class="content">
+				<!-- ng-view -->
+				<theme:layoutZone name="body"/>
 	        </div>
 	    </div>
+		<!-- footer -->
+		<div class="footer">
+		      <div class="container">
+		        <theme:layoutZone name="footer"/>
+		      </div>
+		</div>
         <r:layoutResources />
 	</theme:body>
 </html>
