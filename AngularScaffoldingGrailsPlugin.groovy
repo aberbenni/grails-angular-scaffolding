@@ -40,7 +40,6 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 	def doWithConfig = { config ->
 		
         platformUi {
-			
             ui.AngularScaffolding.actions.cssClass = 'form-actions'
             ui.AngularScaffolding.button.cssClass = 'btn'
             ui.AngularScaffolding.tab.cssClass = 'tab-pane'
@@ -58,8 +57,8 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
             ui.AngularScaffolding.primaryNavigation.cssClass = 'nav'
             ui.AngularScaffolding.secondaryNavigation.cssClass = 'nav nav-pills'
             ui.AngularScaffolding.navigation.cssClass = 'nav'
-        	
-		    themes.AngularScaffolding.ui.set = "AngularScaffolding"
+			
+			themes.AngularScaffolding.ui.set = "AngularScaffolding"
         }
 		
 		application {
