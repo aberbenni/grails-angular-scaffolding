@@ -26,7 +26,7 @@
         
         <ui:actions>
 			
-			<ui:button kind="button" mode="secondary" value="Redirect"
+			<ui:button kind="anchor" mode="primary"
 					   text="\${message(code: 'default.button.edit.label', default: 'Edit')}"
 					   textArgs="[entityName]"
 					   data-ng-href="#/edit/{{item.id}}" />
