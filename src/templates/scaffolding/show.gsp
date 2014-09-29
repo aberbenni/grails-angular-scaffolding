@@ -8,11 +8,8 @@
 <theme:title text="Show ${className}"/>
 
 <theme:zone name="body">
-
-    <gas-alert level="{{message.level}}" text="{{message.text}}"></gas-alert>
 	
-    <ui:form action="#" class="form-horizontal">
-		
+    <gas-alert level="{{message.level}}" text="{{message.text}}"></gas-alert>
 		<dl class="dl-horizontal">
 			<%  excludedProps = Event.allEvents.toList() << 'id' << 'version'
 			allowedNames = domainClass.persistentProperties*.name << 'dateCreated' << 'lastUpdated'
@@ -23,18 +20,15 @@
 			<dd data-ng-bind="item.${p.name}"></dd>
 			<%  } %>
 		</dl>
-        
-        <ui:actions>
-			
-			<ui:button kind="anchor" mode="primary"
-					   text="\${message(code: 'default.button.edit.label', default: 'Edit')}"
-					   textArgs="[entityName]"
-					   data-ng-href="#/edit/{{item.id}}" />
+		<!-- actions -->
+		<div class="well">
+		<ui:button kind="anchor" mode="primary"
+				   text="\${message(code: 'default.button.edit.label', default: 'Edit')}"
+				   textArgs="[entityName]"
+				   data-ng-href="#/edit/{{item.id}}" />
 
-            <ui:button type="submit" kind="button" mode="danger" name="delete"
-                       text="\${message(code: 'default.button.delete.label', default: 'Delete')}"
-                       formnovalidate="" value="delete"
-                       data-ng-click="delete(item)"/>
-        </ui:actions>
-    </ui:form>
+		<ui:button kind="button" mode="danger"
+				   text="\${message(code: 'default.button.delete.label', default: 'Delete')}"
+				   data-ng-click="delete(item)"/>
+		</div>
 </theme:zone>

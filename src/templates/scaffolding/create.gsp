@@ -19,11 +19,11 @@
 
         <ui:actions>
 			
-			<ui:button kind="button" onclick="window.location='#list';" 
+			<ui:button kind="anchor" data-ng-href="#list"
 					   text="\${message(code: 'default.button.cancel.label', default: 'Cancel')}"
 					   textArgs="[entityName]"/>
 		
-            <ui:button type="submit" kind="button" mode="primary" name="create"
+            <ui:button kind="submit" mode="primary" name="create"
                        text="\${message(code: 'default.button.create.label', default: 'Create')}"
 					   data-ng-disabled="form.\\\$invalid"/>
         </ui:actions>
