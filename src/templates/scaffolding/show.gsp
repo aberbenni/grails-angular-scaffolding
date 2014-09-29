@@ -10,6 +10,8 @@
 <theme:zone name="body">
 	
     <gas-alert level="{{message.level}}" text="{{message.text}}"></gas-alert>
+	<div class="panel panel-default">
+	  <div class="panel-body">
 		<dl class="dl-horizontal">
 			<%  excludedProps = Event.allEvents.toList() << 'id' << 'version'
 			allowedNames = domainClass.persistentProperties*.name << 'dateCreated' << 'lastUpdated'
@@ -20,6 +22,8 @@
 			<dd data-ng-bind="item.${p.name}"></dd>
 			<%  } %>
 		</dl>
+	  </div>
+	</div>
 		<!-- actions -->
 		<div class="well">
 		<ui:button kind="anchor" mode="primary"
