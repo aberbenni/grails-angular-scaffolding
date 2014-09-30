@@ -35,7 +35,6 @@ class HeplerTagLib {
 	
 	//override UiExtensionsTagLib.joinClasses (p:joinClasses)
     def joinClasses = { attrs ->
-		println "attrs: $attrs"  
 		StringBuilder res = new StringBuilder()
         def first = true
 		attrs.values.unique()
