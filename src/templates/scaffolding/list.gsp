@@ -9,12 +9,12 @@
 	<gas-alert level="{{message.level}}" text="{{message.text}}"></gas-alert>
 	
 	<div class="table-responsive">
-    	<ui:table class="table table-striped table-bordered table-hover">
+    	<ui:table>
 			<thead>
 			<ui:tr>
 			    <% excludedProps = Event.allEvents.toList() << 'id' << 'version'
 			    allowedNames = domainClass.persistentProperties*.name << 'dateCreated' << 'lastUpdated'
-				only = []//grailsApplication.getArtefactByLogicalPropertyName("Controller", controllerName).getPropertyValue("listProperties")
+				only = []//grailsApplication.getArtefactByLogicalPropertyName("Controller", controllerName).getPropertyValue("listProperties") //TODO scaffolding tags
 			    props = domainClass.properties.findAll { allowedNames.contains(it.name) && !excludedProps.contains(it.name) && it.type != null && !Collection.isAssignableFrom(it.type) } //&& !it.isAssociation() && !it.embedded }
 				Collections.sort(props, comparator.constructors[0].newInstance([domainClass] as Object[]))
 				if(only)
@@ -23,12 +23,14 @@
 					props = props[0..5]
 	
 				props.eachWithIndex { p, i ->
-			        if (p.isAssociation()) { %>
+					if (p.isAssociation()) { 
+						//TODO code for associations header
+						%>
 						<ui:th><g:message code="${domainClass.propertyName}.${p.name}.label" default="${p.naturalName}"/></ui:th>
 					<% } else { %>
 						<th data-gas-sortable="${p.name}">\${message(code: '${domainClass.propertyName}.${p.name}.label', default: '${p.naturalName}')}</th> 
 					<% }
-			    } %>
+				} %>
 			</ui:tr>
 			</thead>
 			<tbody>

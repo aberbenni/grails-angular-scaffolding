@@ -9,6 +9,6 @@
   bodyContent - The body of the actions container
   attrs - Any attributes to pass through
 --%>
-<div class="well ${hlp.joinClasses(values:[actionsClass, classes])}">
-    ${bodyContent}
-</div>
+<ui:block type="well" class="${hlp.joinClasses(values:[actionsClass, classes])}">
+	${bodyContent}
+</ui:block>

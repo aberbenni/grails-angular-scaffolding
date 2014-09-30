@@ -1,9 +1,7 @@
 <form${ui.attributes(attrs:attrs)} class="${hlp.joinClasses(values:[formClass,classes])}">
 	${actionsContent}
-	<div class="panel panel-default">
-	  <div class="panel-body">
-		  ${bodyContent}
-	  </div>
-	</div>
+	<ui:block type="panel">
+			${bodyContent}
+	</ui:block>
 	${actionsContent}
 </form>

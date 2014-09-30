@@ -1,5 +1,5 @@
-<% import grails.persistence.Event %>
 <%=packageName%>
+<% import grails.persistence.Event %>
 <!doctype html>
 <html>
     <head>
