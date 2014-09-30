@@ -7,7 +7,7 @@
 		      <span class="icon-bar"></span>
 		      <span class="icon-bar"></span>
 		    </button>
-		    <div id="grailsLogo" role="banner"><a href="http://grails.org"><img style="padding-top:4px" src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
+			<ui:logo width="47" height="47"/>
 		  </div>
 		  <div class="navbar-collapse collapse">	 
 			<nav:menu id="nav" class="nav navbar-nav" custom="true" scope="app" depth="2" forceChildren="true">

@@ -39,27 +39,28 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 	
 	def doWithConfig = { config ->
 		
-        platformUi {
-            ui.AngularScaffolding.actions.cssClass = ''
-            ui.AngularScaffolding.button.cssClass = 'btn'
-            ui.AngularScaffolding.tab.cssClass = 'tab-pane'
-            ui.AngularScaffolding.tabs.cssClass = 'nav nav-tabs'
-            ui.AngularScaffolding.field.cssClass = 'input'
-            ui.AngularScaffolding.input.cssClass = 'input-xlarge'
-            ui.AngularScaffolding.invalid.cssClass = 'invalid'
-            ui.AngularScaffolding.table.cssClass = 'table table-striped table-bordered table-hover'
-            ui.AngularScaffolding.tr.cssClass = ''
-            ui.AngularScaffolding.trOdd.cssClass = ''
-            ui.AngularScaffolding.trEven.cssClass = ''
-            ui.AngularScaffolding.carousel.cssClass = 'carousel slide'
-            ui.AngularScaffolding.slide.cssClass = 'item'
-            ui.AngularScaffolding.form.cssClass = 'form-horizontal'
-            ui.AngularScaffolding.primaryNavigation.cssClass = 'nav'
-            ui.AngularScaffolding.secondaryNavigation.cssClass = 'nav nav-pills'
-            ui.AngularScaffolding.navigation.cssClass = 'nav'
+		platformUi {
+			ui.AngularScaffolding.logo.cssClass = 'navbar-brand'
+			ui.AngularScaffolding.actions.cssClass = ''
+			ui.AngularScaffolding.button.cssClass = 'btn'
+			ui.AngularScaffolding.tab.cssClass = 'tab-pane'
+			ui.AngularScaffolding.tabs.cssClass = 'nav nav-tabs'
+			ui.AngularScaffolding.field.cssClass = 'input'
+			ui.AngularScaffolding.input.cssClass = 'input-xlarge'
+			ui.AngularScaffolding.invalid.cssClass = 'invalid'
+			ui.AngularScaffolding.table.cssClass = 'table table-striped table-bordered table-hover'
+			ui.AngularScaffolding.tr.cssClass = ''
+			ui.AngularScaffolding.trOdd.cssClass = ''
+			ui.AngularScaffolding.trEven.cssClass = ''
+			ui.AngularScaffolding.carousel.cssClass = 'carousel slide'
+			ui.AngularScaffolding.slide.cssClass = 'item'
+			ui.AngularScaffolding.form.cssClass = 'form-horizontal'
+			ui.AngularScaffolding.primaryNavigation.cssClass = 'nav'
+			ui.AngularScaffolding.secondaryNavigation.cssClass = 'nav nav-pills'
+			ui.AngularScaffolding.navigation.cssClass = 'nav'
 			
 			themes.AngularScaffolding.ui.set = "AngularScaffolding"
-        }
+		}
 		
 		application {
 			
