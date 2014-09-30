@@ -7,7 +7,7 @@
 		<theme:title text="\${message(code: '${domainClass.propertyName}.label', default: '${className}')}"/>
 		<theme:layout name="home"/>
 		
-		<r:require module="ui-bootstrap"/>
+		<theme:resources/>
 		<r:require module="angular-scaffolding"/>
         <r:require module="angular-grails-default"/>
 		<script>

@@ -1,8 +1,9 @@
-
 // Put your resources in here
 modules = {
     'theme.AngularScaffolding' {
         // Add your global CSS/JS files here
+		//dependsOn 'ui-bootstrap'
+		dependsOn 'bootstrap-css'
     }
 
     'theme.AngularScaffolding.home' {
