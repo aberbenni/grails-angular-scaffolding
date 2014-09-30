@@ -105,8 +105,6 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 
 	def onChange = { event ->
 		
-		println "onChange"
-		
 		if (event.source && application.isControllerClass(event.source)) {
 			GrailsControllerClass controllerClass = application.getControllerClass(event.source.name)
 			doScaffoldingController(event.ctx, event.application, controllerClass)
@@ -137,8 +135,6 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 		}
 		
 		GrailsTemplateGenerator generator = ctx.scaffoldingTemplateGenerator
-		
-		println "generator: $generator"
 		
 		ClassLoader parentLoader = ctx.classLoader
 		
