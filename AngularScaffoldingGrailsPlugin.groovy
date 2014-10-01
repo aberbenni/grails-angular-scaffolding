@@ -65,9 +65,9 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 		application {
 			
 			grails.databinding.dateFormats = config.grails.databinding.dateFormats + ["yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss.S", "yyyy-MM-dd'T'hh:mm:ss'Z'", "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'"]
+			grails.databinding.dateFormats.unique()
 			
 		}
-        
 	}
 	
 	def doWithSpring = {
