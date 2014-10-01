@@ -40,6 +40,14 @@ grails.converters.json.domain.include.version = true
 
 By default Grails uses a non-RESTful URL scheme where the controller action representing the verb is part of the URL. In the Grails documentation there is a section on [configuring RESTful URL mappings](http://grails.org/doc/latest/guide/theWebLayer.html#mappingHTTP). If you want to use such a URL scheme with this plugin you will need to override the `web-app/js/grails-default.js` file that configures an Angular _$resource_ service that maps to your Grails controllers.
 
+## Grails Plugins
+
+This project makes use of these plugins:
+
+* [Grails AngularJS Resources Plugin](https://github.com/smartiniOnGitHub/grails-angularjs-resources)
+* [Grails Platform Core Plugin](https://github.com/grails-plugins/grails-platform-core)
+* [Grails Platform UI Plugin](https://github.com/MerryCoders/grails-platform-ui)
+
 ## Limitations
 
 This is an experimental work-in-progress. See the [issues list](https://github.com/aberbenni/grails-angular-scaffolding/issues) for outstanding features.
