@@ -13,14 +13,14 @@ import grails.plugin.angularscaffolding.marshalling.AngularDateMarshaller
 
 class AngularScaffoldingGrailsPlugin {
 
-	private Logger log = LoggerFactory.getLogger(getClass())
+    private Logger log = LoggerFactory.getLogger(getClass())
 	
     def version = '1.0-SNAPSHOT'
     def grailsVersion = '2.0 > *'
     def dependsOn = [:]
     def pluginExcludes = []
-	def loadBefore = ['platformUi']
-	def loadAfter = ['controllers', 'groovyPages','scaffolding']
+    def loadBefore = ['platformUi']
+    def loadAfter = ['controllers', 'groovyPages','scaffolding']
 
     def title = 'Angular Scaffolding Plugin'
     def author = 'Rob Fletcher'
@@ -88,19 +88,21 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 		// Custom marshalling
 		ctx.getBean( "angularObjectMarshallers" ).register()
 		
-		if (application.warDeployed) {
-			doScaffolding ctx, application
-			return
-		}
-
-		try {
-            log.info "do scaffolding..."
-			doScaffolding ctx, application
-            log.info "done scaffolding."
-		}
-		catch (e) {
-			log.error "Error doing scaffolding: $e.message", e
-		}
+		//TODO if config.grails.plugin.angularscaffolding.dynamicScaffolding == true 
+			if (application.warDeployed) {
+				doScaffolding ctx, application
+				return
+			}
+			
+			try {
+	            		log.info "do scaffolding..."
+				doScaffolding ctx, application
+	            		log.info "done scaffolding."
+			}
+			catch (e) {
+				log.error "Error doing scaffolding: $e.message", e
+			}
+		//
 	}
 
 	def onChange = { event ->
