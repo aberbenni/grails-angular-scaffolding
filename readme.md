@@ -1,4 +1,5 @@
-This is a Grails plugin that allows you to use [Angular.js](http://angularjs.org/) based scaffolding.
+This is a Grails plugin that allows you to use [Angular.js](http://angularjs.org/), [Twitter Bootstrap](http://www.getbootstrap.com), [Grails Platform UI Theme](http://platform-ui.org/doc/latest/guide/themes.html) based scaffolding.
+This work is derived from original [Grails Angular Scaffolding Plugin](https://github.com/robfletcher/grails-angular-scaffolding) by [Rob Fletcher](https://github.com/robfletcher).
 
 ## Usage
 
@@ -16,11 +17,7 @@ To generate the controller and views for a domain class run:
 
 ### Dynamic scaffolding
 
-Dynamic scaffolding is only supported for the controller. Currently you will need to generate the views for each domain class.
-
-To generate only the views and use a dynamically scaffolded controller run:
-
-	grails ng-generate-views _domain class name_
+Dynamic scaffolding is supported for the controller and views. You will not need to generate the controller and views for each domain class.
 
 ## How it works
 
@@ -31,6 +28,11 @@ Each _'page'_ in the CRUD interface for a particular domain class is accessed us
 The HTML templates need to be generated individually for each domain class as they contain the markup needed to represent the properties of that class in a list or a form. However, the JavaScript used for the CRUD interface is the same for all domain classes.
 
 ## Customizing
+
+### Templating
+
+The deafult theme uses [Twitter Bootstrap](http://www.getbootstrap.com) but if you like to use your
+theme follow the instruction in [Grails Platform UI Plugin](http://platform-ui.org/doc/latest/guide/themes.html) docs.
 
 ### Enable optimistic locking check
 
@@ -44,23 +46,18 @@ grails.converters.json.domain.include.version = true
 
 By default Grails uses a non-RESTful URL scheme where the controller action representing the verb is part of the URL. In the Grails documentation there is a section on [configuring RESTful URL mappings](http://grails.org/doc/latest/guide/theWebLayer.html#mappingHTTP). If you want to use such a URL scheme with this plugin you will need to override the `web-app/js/grails-default.js` file that configures an Angular _$resource_ service that maps to your Grails controllers.
 
+## Grails Plugins
+
+This project makes use of these plugins:
+
+* [Grails AngularJS Resources Plugin](https://github.com/smartiniOnGitHub/grails-angularjs-resources)
+* [Grails Platform Core Plugin](https://github.com/grails-plugins/grails-platform-core)
+* [Grails Platform UI Plugin](https://github.com/MerryCoders/grails-platform-ui)
+* [Grails plugin for Twitter Bootstrap CSS framework resources](https://github.com/groovydev/twitter-bootstrap-grails-plugin)
+* [Fields Plugin](https://github.com/grails-fields-plugin/grails-fields)
+* [Grails Scaffolding Plugin](https://github.com/grails-plugins/grails-scaffolding)
+
 ## Limitations
 
-This is an experimental work-in-progress. See the [issues list](https://github.com/robfletcher/grails-angular-scaffolding/issues) for outstanding features.
+This is an experimental work-in-progress. See the [issues list](https://github.com/aberbenni/grails-angular-scaffolding/issues) for outstanding features.
 
-## Demo
-
-There is [a demo of this plugin](http://grails-ng.cloudfoundry.com/) running on Cloud Foundry.
-
-The demo application is also included under `test/apps/grails-ng` in this project.
-
-## Tests
-
-There are some end-to-end tests that use [Casper JS](http://casperjs.org/). To run the tests:
-
-    cd test/apps/grails-ng
-    grails run-app
-
-Then in another terminal:
-
-	casperjs test --includes=test/casper/includes/casper-angular.coffee test/casper/specs/
