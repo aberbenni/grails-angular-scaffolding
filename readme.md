@@ -1,4 +1,5 @@
-This is a Grails plugin that allows you to use [Angular.js](http://angularjs.org/) based scaffolding.
+This is a Grails plugin that allows you to use [Angular.js](http://angularjs.org/), [Twitter Bootstrap](http://www.getbootstrap.com), [Grails Platform UI Theme](http://platform-ui.org/doc/latest/guide/themes.html) based scaffolding.
+This work is based on original [Grails Angular Scaffolding Plugin](https://github.com/robfletcher/grails-angular-scaffolding) by Rob Fletcher
 
 ## Usage
 
