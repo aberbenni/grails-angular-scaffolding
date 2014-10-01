@@ -19,6 +19,11 @@ To generate the controller and views for a domain class run:
 
 Dynamic scaffolding is supported for the controller and views. You will not need to generate the controller and views for each domain class.
 
+### Templating
+
+The deafult theme uses [Twitter Bootstrap](http://www.getbootstrap.com) but if you like to use your
+theme you can customize it following instruction of[Grails Platform UI Theme](http://platform-ui.org/doc/latest/guide/themes.html).
+
 ## How it works
 
 Instead of the Grails controller rendering a view for each page using a GSP the controller's _index_ action serves up an initial framework page containing the JavaScript resources required by Angular JS. The remaining controller actions simply return _JSON_ data.
