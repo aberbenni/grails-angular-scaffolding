@@ -36,7 +36,7 @@ grails.project.dependency.resolution = {
 		
         runtime ":resources:1.2.8"
 		
-	runtime ":angularjs-resources:1.2.23"
+	runtime ":angularjs-resources:1.2.25"
 		
 	runtime ":twitter-bootstrap:3.2.0.2"
 		
