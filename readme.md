@@ -16,11 +16,7 @@ To generate the controller and views for a domain class run:
 
 ### Dynamic scaffolding
 
-Dynamic scaffolding is only supported for the controller. Currently you will need to generate the views for each domain class.
-
-To generate only the views and use a dynamically scaffolded controller run:
-
-	grails ng-generate-views _domain class name_
+Dynamic scaffolding is supported for the controller and views. You will not need to generate the controller and views for each domain class.
 
 ## How it works
 
