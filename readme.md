@@ -22,7 +22,7 @@ Dynamic scaffolding is supported for the controller and views. You will not need
 ### Templating
 
 The deafult theme uses [Twitter Bootstrap](http://www.getbootstrap.com) but if you like to use your
-theme you can customize it following instruction of [Grails Platform UI Theme](http://platform-ui.org/doc/latest/guide/themes.html).
+theme follow the instruction in [Grails Platform UI Plugin](http://platform-ui.org/doc/latest/guide/themes.html) docs.
 
 ## How it works
 
