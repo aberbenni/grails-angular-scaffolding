@@ -47,6 +47,9 @@ This project makes use of these plugins:
 * [Grails AngularJS Resources Plugin](https://github.com/smartiniOnGitHub/grails-angularjs-resources)
 * [Grails Platform Core Plugin](https://github.com/grails-plugins/grails-platform-core)
 * [Grails Platform UI Plugin](https://github.com/MerryCoders/grails-platform-ui)
+* [Grails plugin for Twitter Bootstrap CSS framework resources](https://github.com/groovydev/twitter-bootstrap-grails-plugin)
+* [Fields Plugin](https://github.com/grails-fields-plugin/grails-fields)
+* [Grails Scaffolding Plugin](https://github.com/grails-plugins/grails-scaffolding)
 
 ## Limitations
 
