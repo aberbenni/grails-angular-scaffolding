@@ -72,7 +72,7 @@ class AngularTemplateGenerator extends DefaultGrailsTemplateGenerator
 					renderEditor: renderEditor,
 					comparator: hasHibernate ? DomainClassPropertyComparator : SimpleDomainClassPropertyComparator]
 
-println "viewName: $viewName, domainClass: $domainClass, class: ${domainClass.class.name}"
+			//println "viewName: $viewName, domainClass: $domainClass, class: ${domainClass.class.name}"
 			t.make(binding).writeTo(out)
 		}
 	}
@@ -86,10 +86,14 @@ println "viewName: $viewName, domainClass: $domainClass, class: ${domainClass.cl
 			viewsDir = new File("$destDir/web-app/ng-templates/$domainClass.propertyName") 
 		}
 		if (!viewsDir.exists()) viewsDir.mkdirs()
-
+		
+		def overwrite = false //TODO make configurable 
+		
 		def destFile = new File(viewsDir, "$viewName")
-		destFile.withWriter { Writer writer ->
-			generateView domainClass, viewName, writer
+		if (!destFile.exists() || !overwrite) {
+			destFile.withWriter { Writer writer ->
+				generateView domainClass, viewName, writer
+			}
 		}
 	}
 
@@ -101,7 +105,7 @@ println "viewName: $viewName, domainClass: $domainClass, class: ${domainClass.cl
 		def templatesDir = new FileSystemResource(templatesDirPath)
 		if (templatesDir.exists()) {
 			try {
-				resources.addAll(resolver.getResources("file:$templatesDirPath/*.html").filename)
+				//resources.addAll(resolver.getResources("file:$templatesDirPath/*.html").filename)
 				resources.addAll(resolver.getResources("file:$templatesDirPath/*.gsp").filename)
 			} catch (e) {
 				event 'StatusError', ['Error while loading views from grails-app scaffolding folder', e]
