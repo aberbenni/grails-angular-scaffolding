@@ -18,27 +18,28 @@ grails.project.dependency.resolution = {
     dependencies {
     }
 
-    plugins {
-        build(":release:2.2.0", ":rest-client-builder:1.0.2") {
-            export = false
-        }
-        compile ":scaffolding:2.0.3"
+	plugins {
+		build(":release:2.2.0") {
+			export = false
+		}
+		compile ":scaffolding:2.0.3"
 		
-	compile ":fields:1.4"
+		compile ":fields:1.4"
 				
-        compile(":platform-ui:1.0.RC7"){
-            excludes "resources"
-        }
+		compile(":platform-ui:1.0.RC7"){
+			excludes "resources"
+		}
 		
-        compile(":platform-core:1.0.0") {
-            excludes "spring-test"
-        }
+		compile(":platform-core:1.0.0") {
+			excludes "spring-test"
+		}
 		
-        runtime ":resources:1.2.8"
+		runtime ":resources:1.2.8"
 		
-	runtime ":angularjs-resources:1.2.26"
+		runtime ":angularjs-resources:1.2.26"
 		
-	runtime ":twitter-bootstrap:3.2.0.2"
+		runtime ":twitter-bootstrap:3.3.1"
 		
-    }
+	}
+	
 }
