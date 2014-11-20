@@ -13,7 +13,8 @@ class ${className}Controller {
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
 		response.setIntHeader('X-Pagination-Total', ${className}.count())
-		render ${className}.list(params) as JSON
+		//render ${className}.list(params) as JSON
+		respond ${className}.list(params), [formats:['json'], includes: includeFields]
     }
 
     def save() {
@@ -35,7 +36,8 @@ class ${className}Controller {
     def get() {
         def ${propertyName} = ${className}.get(params.id)
         if (${propertyName}) {
-			render ${propertyName} as JSON
+			//render ${propertyName} as JSON
+			respond ${propertyName}, [formats:['json'], includes: includeFields]
         } else {
 			notFound params.id
 		}
@@ -101,4 +103,8 @@ class ${className}Controller {
         def responseJson = [message: message(code: 'default.not.found.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), params.id])]
         render responseJson as JSON
     }
+	
+	private getIncludeFields() {
+		params.fields?.tokenize(',')
+	}
 }

@@ -86,6 +86,23 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 	        ]
 	    }
 		
+		//default excludes class field
+		def excludesList = ['class']
+		if(application.config.angularScaffolding.render.excludesList) {
+			excludesList = application.config.angularScaffolding.render.excludesList
+		}
+		
+		// for all domain classes in the application.
+		for (domainClass in application.domainClasses) {	
+			"json${domainClass.shortName}CollectionRenderer"(grails.rest.render.json.JsonCollectionRenderer, domainClass.clazz) {
+				excludes = excludesList
+			}		
+			"json${domainClass.shortName}Renderer"(grails.rest.render.json.JsonRenderer, domainClass.clazz) {
+				excludes = excludesList
+			}
+		
+		}
+		
 	}
 	
 	def doWithApplicationContext = { ctx ->
@@ -111,12 +128,15 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 
 	def onChange = { event ->
 		
-		if (event.source && application.isControllerClass(event.source)) {
-			GrailsControllerClass controllerClass = application.getControllerClass(event.source.name)
-			doScaffoldingController(event.ctx, event.application, controllerClass)
-		}
-		else {
-			doScaffolding(event.ctx, event.application)
+		def dynamicScaffold = false //TODO make configurable
+		
+		if(dynamicScaffold){
+			if (event.source && application.isControllerClass(event.source)) {
+				GrailsControllerClass controllerClass = application.getControllerClass(event.source.name)
+				doScaffoldingController(event.ctx, event.application, controllerClass)
+			} else {	
+					doScaffolding(event.ctx, event.application)
+			}
 		}
 	}
 	
