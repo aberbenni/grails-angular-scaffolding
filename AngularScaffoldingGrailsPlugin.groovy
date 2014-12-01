@@ -1,7 +1,7 @@
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import org.codehaus.groovy.grails.commons.GrailsControllerClass
 import org.codehaus.groovy.grails.commons.GrailsDomainClass
-import grails.plugin.angularscaffolding.AngularTemplateGenerator 
+import grails.plugin.angularscaffolding.AngularTemplateGenerator
 import org.codehaus.groovy.grails.scaffolding.GrailsTemplateGenerator
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -13,6 +13,7 @@ import grails.rest.render.json.JsonRenderer
 import grails.rest.render.json.JsonCollectionRenderer
 import org.codehaus.groovy.grails.web.mime.MimeType
 
+import grails.plugin.angularscaffolding.marshalling.DomainClassMarshaller
 import grails.plugin.angularscaffolding.marshalling.AngularObjectMarshallers
 import grails.plugin.angularscaffolding.marshalling.AngularDateMarshaller
 
@@ -98,27 +99,19 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 			excludesList = application.config.angularScaffolding.render.excludesList
 		}
 		
-		JSON.createNamedConfig('short') {
-			for (domainClass in application.domainClasses) {	
-				it.registerObjectMarshaller(domainClass.clazz) { domain ->
-					def map = [:]
-					map['id'] = domain.id
-					map['desc'] = "$domain"
-					return map
-				}
+		/*JSON.createNamedConfig('short') { nc ->
+			println nc
+			for (domainClass in application.domainClasses) {
+				println "${domainClass.shortName}"
+				Closure c = DomainClassMarshaller.createIncludeMarshaller(domainClass.clazz, ['id','toString'])
+				println c
+				nc.registerObjectMarshaller(domainClass.clazz, c)
+				println "----------------------"
 			}
-		}
+		}*/
 		
 		// for all domain classes in the application.
 		for (domainClass in application.domainClasses) {
-			
-			/*JSON.createNamedConfig('short') {
-				it.registerObjectMarshaller(domainClass.clazz) { domain ->
-					def domainMap = [id: domain.id, desc: "$domain"]
-					
-					domainMap
-				}
-			}*/
 			
 			// Register JSON renderer for domainClass resource with short output.
 			"json${domainClass.shortName}ShortRenderer"(JsonRenderer, domainClass.clazz) {
@@ -159,20 +152,33 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 		ctx.getBean( "angularObjectMarshallers" ).register()
 		
 		//TODO if config.grails.plugin.angularscaffolding.dynamicScaffolding == true 
-			if (application.warDeployed) {
-				doScaffolding ctx, application
-				return
-			}
-			
-			try {
-				log.info "do scaffolding..."
-				doScaffolding ctx, application
-				log.info "done scaffolding."
-			}
-			catch (e) {
-				log.error "Error doing scaffolding: $e.message", e
-			}
+		if (application.warDeployed) {
+			doScaffolding ctx, application
+			return
+		}
+		
+		try {
+			log.info "do scaffolding..."
+			doScaffolding ctx, application
+			log.info "done scaffolding."
+		}
+		catch (e) {
+			log.error "Error doing scaffolding: $e.message", e
+		}
 		//
+		
+		def config = application.config;
+		
+		JSON.createNamedConfig('short') { nc ->
+			println nc
+			for (domainClass in application.domainClasses) {
+				println "${domainClass.shortName}"
+				Closure c = DomainClassMarshaller.createIncludeMarshaller(domainClass.clazz, ['id','toString'])
+				println c
+				nc.registerObjectMarshaller(domainClass.clazz, c)
+				println "----------------------"
+			}
+		}
 	}
 
 	def onChange = { event ->
