@@ -154,9 +154,6 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 		catch (e) {
 			log.error "Error doing scaffolding: $e.message", e
 		}
-		//
-		
-		def config = application.config;
 		
 		JSON.createNamedConfig('short') { nc ->
 			for (domainClass in application.domainClasses) {
@@ -164,6 +161,10 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 				nc.registerObjectMarshaller(domainClass.clazz, c)
 			}
 		}
+		
+		def config = application.config
+		
+		config.grails.mime.types['short'] = ['application/angular-scaffolding.short+json', 'application/json']
 	}
 
 	def onChange = { event ->
