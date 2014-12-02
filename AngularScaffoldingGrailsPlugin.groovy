@@ -99,17 +99,6 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 			excludesList = application.config.angularScaffolding.render.excludesList
 		}
 		
-		/*JSON.createNamedConfig('short') { nc ->
-			println nc
-			for (domainClass in application.domainClasses) {
-				println "${domainClass.shortName}"
-				Closure c = DomainClassMarshaller.createIncludeMarshaller(domainClass.clazz, ['id','toString'])
-				println c
-				nc.registerObjectMarshaller(domainClass.clazz, c)
-				println "----------------------"
-			}
-		}*/
-		
 		// for all domain classes in the application.
 		for (domainClass in application.domainClasses) {
 			
@@ -170,13 +159,9 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 		def config = application.config;
 		
 		JSON.createNamedConfig('short') { nc ->
-			println nc
 			for (domainClass in application.domainClasses) {
-				println "${domainClass.shortName}"
 				Closure c = DomainClassMarshaller.createIncludeMarshaller(domainClass.clazz, ['id','toString'])
-				println c
 				nc.registerObjectMarshaller(domainClass.clazz, c)
-				println "----------------------"
 			}
 		}
 	}
