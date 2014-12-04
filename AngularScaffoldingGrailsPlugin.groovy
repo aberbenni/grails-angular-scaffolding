@@ -3,8 +3,6 @@ import org.codehaus.groovy.grails.commons.GrailsControllerClass
 import org.codehaus.groovy.grails.commons.GrailsDomainClass
 import grails.plugin.angularscaffolding.AngularTemplateGenerator
 import org.codehaus.groovy.grails.scaffolding.GrailsTemplateGenerator
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
 import grails.util.BuildSettingsHolder
 
@@ -19,7 +17,7 @@ import grails.plugin.angularscaffolding.marshalling.AngularDateMarshaller
 
 class AngularScaffoldingGrailsPlugin {
 
-    private Logger log = LoggerFactory.getLogger(getClass())
+    //private Logger log = LoggerFactory.getLogger(getClass())
 	
     def version = '1.0-SNAPSHOT'
     def grailsVersion = '2.0 > *'
@@ -44,6 +42,8 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 	def observe = ['controllers', 'domainClass']
 	
 	def doWithConfig = { config ->
+		
+		log.debug "AngularScaffoldingGrailsPlugin.doWithConfig"
 		
 		platformUi {
 			ui.AngularScaffolding.logo.cssClass = 'navbar-brand'
@@ -82,6 +82,8 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 	}
 	
 	def doWithSpring = {
+		
+		log.debug "AngularScaffoldingGrailsPlugin.doWithSpring"
 		
 		scaffoldingTemplateGenerator(AngularTemplateGenerator, ref("classLoader")) {
 			grailsApplication = ref("grailsApplication")
@@ -137,8 +139,22 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 	}
 	
 	def doWithApplicationContext = { ctx ->
+		
+		log.debug "AngularScaffoldingGrailsPlugin.doWithApplicationContext"
+		
 		// Custom marshalling
 		ctx.getBean( "angularObjectMarshallers" ).register()
+		
+		JSON.createNamedConfig('short') { nc ->
+			for (domainClass in application.domainClasses) {
+				Closure c = DomainClassMarshaller.createIncludeMarshaller(domainClass.clazz, ['id','toString'])
+				nc.registerObjectMarshaller(domainClass.clazz, c)
+			}
+		}
+		
+		def config = application.config
+		
+		config.grails.mime.types['short'] = ['application/angular-scaffolding.short+json', 'application/json']
 		
 		//TODO if config.grails.plugin.angularscaffolding.dynamicScaffolding == true 
 		if (application.warDeployed) {
@@ -155,19 +171,11 @@ A plugin that enables Grails scaffolding to operate as an Angular.js one-page ap
 			log.error "Error doing scaffolding: $e.message", e
 		}
 		
-		JSON.createNamedConfig('short') { nc ->
-			for (domainClass in application.domainClasses) {
-				Closure c = DomainClassMarshaller.createIncludeMarshaller(domainClass.clazz, ['id','toString'])
-				nc.registerObjectMarshaller(domainClass.clazz, c)
-			}
-		}
-		
-		def config = application.config
-		
-		config.grails.mime.types['short'] = ['application/angular-scaffolding.short+json', 'application/json']
 	}
 
 	def onChange = { event ->
+		
+		log.debug "AngularScaffoldingGrailsPlugin.onChange"
 		
 		def dynamicScaffold = false //TODO make configurable
 		
