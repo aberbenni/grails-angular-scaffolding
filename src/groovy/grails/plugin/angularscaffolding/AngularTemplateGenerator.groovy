@@ -116,5 +116,19 @@ class AngularTemplateGenerator extends DefaultGrailsTemplateGenerator
 	}
 
 	protected String getPropertyName(GrailsDomainClass domainClass) { "${domainClass.propertyName}${domainSuffix}" }
+	
+	@Override
+	public void generateController(GrailsDomainClass domainClass, Writer out) throws IOException {
+		def controllerClass = grailsApplication.getArtefactByLogicalPropertyName("Controller", domainClass.logicalPropertyName)
+
+		String templateText = getTemplateText("Controller.groovy")
+		String packageName = controllerClass.packageName.equals(domainClass.packageName)?domainClass.packageName:controllerClass.packageName
+
+		Map<String, Object> binding = createBinding(domainClass)
+		binding.put("packageName", packageName)
+		binding.put("propertyName", getPropertyName(domainClass))
+
+		generate(templateText, binding, out)
+	}
 
 }

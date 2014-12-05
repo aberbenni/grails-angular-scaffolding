@@ -1,6 +1,7 @@
 <%=packageName ? "package ${packageName}\n\n" : ''%>import org.springframework.dao.DataIntegrityViolationException
 import grails.converters.JSON
 import static javax.servlet.http.HttpServletResponse.*
+import ${domainClass.fullName}
 
 class ${className}Controller {
 
